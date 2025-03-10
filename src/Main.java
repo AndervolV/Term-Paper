@@ -13,16 +13,7 @@ public class Main {
         employees[8] = new Employee("Лидия Федосеева Шукшина", 5, 50000);
         employees[9] = new Employee("Федор Иванович Шаляпин", 5, 50000);
 
-        System.out.println(employees[0]);
-        System.out.println(employees[1]);
-        System.out.println(employees[2]);
-        System.out.println(employees[3]);
-        System.out.println(employees[4]);
-        System.out.println(employees[5]);
-        System.out.println(employees[6]);
-        System.out.println(employees[7]);
-        System.out.println(employees[8]);
-        System.out.println(employees[9]);
+        printAllEmployees();
 
         int salaryFound = 0;
         for (int i = 0; i < employees.length; i++) {
