@@ -1,6 +1,5 @@
 public class Main {
     public static Employee[] employees = new Employee[10];
-
     public static void main(String[] args) {
         employees[0] = new Employee("Казимир Несторович Фандорин", 1, 200000);
         employees[1] = new Employee("Рузвельт Франклин Делано", 2, 300000);
@@ -14,45 +13,12 @@ public class Main {
         employees[9] = new Employee("Федор Иванович Шаляпин", 5, 50000);
 
         printAllEmployees();
-
-        int salaryFound = 0;
-        for (int i = 0; i < employees.length; i++) {
-            salaryFound = employees[i].getSalary() + salaryFound;
-        }
-        System.out.println("Сумма затрат на ЗП в месяц " + salaryFound + " руб.");
-
-        int minimumSalary = employees[0].getSalary();
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i].getSalary() < minimumSalary) {
-                minimumSalary = employees[i].getSalary();
-            }
-        }
-        for (int i = 0; i < employees.length; i++) {
-            if (employees[i].getSalary() == minimumSalary) {
-                System.out.println("Сотрудник с минимальной оплатой труда: " + employees[i].getFullName() + " " + employees[i].getSalary() + " руб.");
-            }
-        }
-        int maximumSalary = -1;
-        for (int j = 0; j < employees.length; j++) {
-            if (employees[j].getSalary() > maximumSalary) {
-                maximumSalary = employees[j].getSalary();
-            }
-        }
-        for (int j = 0; j < employees.length; j++) {
-            if (employees[j].getSalary() == maximumSalary) {
-                System.out.println("Сотрудник с максимальной оплатой труда: " + employees[j].getFullName() + " " + employees[j].getSalary() + " руб.");
-            }
-        }
-        System.out.println("Средняя заработная  плата " + employees.length + " сотрудников составляет " + salaryFound / employees.length + " руб.");
-
+        System.out.println("Сумма затрат на ЗП в месяц: " + calculateTotalSalary() + " руб.");
+        findEmployeeWithMinSalary();
+        findEmployeeWithMaxSalary();
+        System.out.println("Средняя зарплата: " + calculateAverageSalary() + " руб.");
         printAllFullNames();
-
     }
-
-
-
-
-
     public static void printAllEmployees() {
         for (Employee employee : employees) {
             if (employee != null) {
@@ -60,7 +26,54 @@ public class Main {
             }
         }
     }
-
+    public static int calculateTotalSalary() {
+        int totalSalary = 0;
+        for (Employee employee : employees) {
+            if (employee != null) {
+                totalSalary += employee.getSalary();
+            }
+        }
+        return totalSalary;
+    }
+    public static void findEmployeeWithMinSalary() {
+        int minimumSalary = Integer.MAX_VALUE;
+        for (Employee employee : employees) {
+            if (employee != null && employee.getSalary() < minimumSalary) {
+                minimumSalary = employee.getSalary();
+            }
+        }
+        System.out.println("Сотрудники с минимальной зарплатой (" + minimumSalary + " руб.):");
+        for (Employee employee : employees) {
+            if (employee != null && employee.getSalary() == minimumSalary) {
+                System.out.println(employee.getFullName() + " " + employee.getSalary() + " руб.");
+            }
+        }
+    }
+    public static void findEmployeeWithMaxSalary() {
+        int maximumSalary = Integer.MIN_VALUE;
+        for (Employee employee : employees) {
+            if (employee != null && employee.getSalary() > maximumSalary) {
+                maximumSalary = employee.getSalary();
+            }
+        }
+        System.out.println("Сотрудники с максимальной зарплатой (" + maximumSalary + " руб.):");
+        for (Employee employee : employees) {
+            if (employee != null && employee.getSalary() == maximumSalary) {
+                System.out.println(employee.getFullName() + " " + employee.getSalary() + " руб.");
+            }
+        }
+    }
+    public static double calculateAverageSalary() {
+        int count = 0;
+        int totalSalary = 0;
+        for (Employee employee : employees) {
+            if (employee != null) {
+                totalSalary += employee.getSalary();
+                count++;
+            }
+        }
+        return count > 0 ? (double) totalSalary / count : 0;
+    }
     public static void printAllFullNames() {
         for (Employee employee : employees) {
             if (employee != null) {
@@ -68,7 +81,6 @@ public class Main {
             }
         }
     }
-
 }
 
 

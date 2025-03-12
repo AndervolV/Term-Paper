@@ -5,19 +5,14 @@ public class Employee {
     private final int id;
 
     public Employee(String fullName, int department, int salary) {
-        this.id = counter;
+        this.id = counter++;
         this.fullName = fullName;
         this.department = department;
         this.salary = salary;
-
     }
 
     public int getId() {
         return id;
-    }
-
-    public int getCounter() {
-        return counter;
     }
 
     public String getFullName() {
@@ -59,16 +54,6 @@ public class Employee {
 
     @Override
     public String toString() {
-        return "id сотрудника " + counter++ + ". ФИО сотрудника: " + fullName + ", отдел № " + department + ". Оклад - " + salary + " руб.";
-
+        return "id сотрудника " + id + ". ФИО сотрудника: " + fullName + ", отдел № " + department + ". Оклад - " + salary + " руб.";
     }
-
-    public static void printAllEmployees() {
-        for (Employee employee : Main.employees) {
-            if (employee != null) {
-                System.out.println(employee);
-            }
-        }
-    }
-
 }
